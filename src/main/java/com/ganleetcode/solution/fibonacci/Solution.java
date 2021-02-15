@@ -10,6 +10,25 @@ public class Solution
         if (n <= 1) {
             return n;
         }
-        return (fib(n - 1) + fib(n - 2)) % (1_000_000_007);
+        int[] mem = new int[n + 1];
+        mem[0] = 0;
+        mem[1] = 1;
+        return (fib(n - 1, mem) + fib(n - 2, mem)) % 1_000_000_007;
+    }
+
+    // 记忆化递归法
+    private int fib(int n, int[] mem) {
+        if (n <= 1) {
+            return n;
+        }
+        if (n == 2) {
+            return mem[0] + mem[1];
+        }
+        if (mem[n - 1] != 0 && mem[n - 2] != 0) {
+            return (mem[n - 1] + mem[n - 2]) % 1_000_000_007;
+        }
+        int res = (fib(n - 1, mem) + fib(n - 2, mem)) % 1_000_000_007;
+        mem[n] = res;
+        return res;
     }
 }

@@ -1,0 +1,15 @@
+package com.ganleetcode.solution.fibonacci;
+
+public class Solution2
+{
+    // 动态规划
+    public int fib(int n) {
+        int a = 0, b = 1, sum = 0;
+        for (int i = 0; i < n; i++) {
+            sum = (a + b) % 1_000_000_007;
+            a = b;
+            b = sum;
+        }
+        return a;
+    }
+}
