@@ -9,7 +9,15 @@ package com.ganleetcode.solution.leetcode58;
 public class Solution
 {
     public int lengthOfLastWord(String s) {
-        final String[] strings = s.split(" ");
-        return strings[strings.length - 1].length();
+        int index = s.length() - 1;
+        while (s.charAt(index) == ' ') {
+            index--;
+        }
+        int res = 0;
+        while (index >= 0 && s.charAt(index) != ' ') {
+            res++;
+            index--;
+        }
+        return res;
     }
 }
