@@ -1,4 +1,4 @@
-package com.ganleetcode.solution.leetcode94;
+package com.ganleetcode.solution.leetcode145;
 
 import com.ganleetcode.solution.common.TreeNode;
 import java.util.ArrayDeque;
@@ -6,9 +6,15 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
+/**
+ * todo
+ *
+ * @author <a href="dreamerlyj@gmail.com">liyanjie</a>
+ * @since
+ */
 public class Solution
 {
-    public List<Integer> inorderTraversal(TreeNode root) {
+    public List<Integer> postorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<>();
         if (root == null) {
             return res;
@@ -18,10 +24,10 @@ public class Solution
         while (!deque.isEmpty()) {
             Command command = deque.pop();
             if ("go".equals(command.order)) {
+                deque.push(new Command("add", command.treeNode));
                 if (command.treeNode.right != null) {
                     deque.push(new Command("go", command.treeNode.right));
                 }
-                deque.push(new Command("add", command.treeNode));
                 if (command.treeNode.left != null) {
                     deque.push(new Command("go", command.treeNode.left));
                 }
